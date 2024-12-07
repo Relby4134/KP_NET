@@ -65,7 +65,7 @@ namespace KP_NET
 
         }
         bool flag= false;
-        private void DrawGraph(int[,] matrix)
+        private void DrawGraph(int[,] matrix, Color color)
         {
             int vertexCount = matrix.GetLength(0);
             int radius = 100;
@@ -76,7 +76,7 @@ namespace KP_NET
             using (Graphics g = Graphics.FromImage(bitmap))
             {
                 g.Clear(Color.White);
-                Pen pen = new Pen(Color.Black);
+                Pen pen = new Pen(color);
                 Brush brush = new SolidBrush(Color.Blue);
 
                 Point[] points = new Point[vertexCount];
@@ -147,7 +147,7 @@ namespace KP_NET
             }
 
             graph = graf;
-            DrawGraph(graf);
+            DrawGraph(graf, Color.Black);
 
         }
 
@@ -306,27 +306,33 @@ namespace KP_NET
 
         private void ListBoxCycles_DoubleClick(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
-            {
-                // Получаем выбранный элемент
-                string select = listBox1.SelectedItem.ToString();
-                //string selectedCycle = select.Substring(0, select.Length - 3);
-                //label6.Text=selectedCycle;
-                string[] indices = select.Split("->");
-                
-                List<int> cycle = new List<int>();
-                foreach (var index in indices)
+            
+                if (listBox1.SelectedItem != null)
                 {
-                    cycle.Add(int.Parse(index)-1);
-                    // Преобразуем строки в числа (уменьшаем на 1 для нулевой индексации)
-                }
-                for (int i = 0; i < cycle.Count; i++) {
-                    label6.Text += cycle[i] + "\n";
-                }
+                    string? select = listBox1.SelectedItem.ToString();
+                    string[]? indices = select.Split("->");
 
-                // Вызываем метод для рисования выбранного цикла
-                DrawCycle(cycle);
-            }
+                    List<int> cycle = new List<int>();
+                    foreach (var index in indices)
+                    {
+                        cycle.Add(int.Parse(index) - 1);
+                    }
+
+                    int[,]? matrix = new int[size_m, size_m];
+                    string? test = "";
+                    for (int i = 0; i < size_m; i++)
+                    {
+                        matrix[i, i] = 0;
+                        int x = cycle[i];
+                        int y = cycle[i + 1];
+                        matrix[x, y] = 1;
+                        matrix[y, x] = 1;
+                        test += matrix[x, y] + " " + matrix[y, x] + '\n';
+                    }
+                    matrix[size_m - 1, size_m - 1] = 0;
+                    DrawGraph(matrix, Color.Red);
+                }
+            
         }
 
 
