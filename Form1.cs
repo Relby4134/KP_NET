@@ -34,6 +34,7 @@ namespace KP_NET
                 textBox_numb.BackColor = Color.Red;
                 count_flag = false;
                 label_error.Text = "Ошибка ввода количества вершин! ";
+                return;
             }
             else
             {
@@ -279,7 +280,20 @@ namespace KP_NET
                 matrix.Rows[i].Cells[i].Value = 0;
             }
         }
-        
+
+        private void matrix_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            for (int i = 0; i < size_m; i++)
+            {
+                for (int j = 0; j < size_m; j++)
+                {
+
+                    matrix.Rows[j].Cells[i].Value = matrix.Rows[i].Cells[j].Value;
+                }
+
+            }
+        }
+
     }
 
 }
