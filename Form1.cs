@@ -73,55 +73,6 @@ namespace KP_NET
 
         }
         bool flag = false;
-        private void DrawGraph(int[,] matrix, Color color, PictureBox picture)
-        {
-            int vertexCount = matrix.GetLength(0);
-            int radius = 100;
-            int centerX = picture.Width / 2;
-            int centerY = picture.Height / 2;
-
-            Bitmap bitmap = new Bitmap(picture.Width, picture.Height);
-            using (Graphics g = Graphics.FromImage(bitmap))
-            {
-                g.Clear(Color.White);
-                Pen pen = new Pen(color);
-                Brush brush = new SolidBrush(Color.Blue);
-
-                Point[] points = new Point[vertexCount];
-                double angleStep = 2 * Math.PI / vertexCount;
-
-                for (int i = 0; i < vertexCount; i++)
-                {
-                    double angle = angleStep * i;
-                    int x = (int)(centerX + radius * Math.Cos(angle));
-                    int y = (int)(centerY + radius * Math.Sin(angle));
-                    points[i] = new Point(x, y);
-                }
-
-                for (int i = 0; i < vertexCount; i++)
-                {
-                    for (int j = i + 1; j < vertexCount; j++)
-                    {
-                        if (matrix[i, j] == 1)
-                        {
-                            g.DrawLine(pen, points[i], points[j]);
-                        }
-
-                    }
-                }
-
-
-                for (int i = 0; i < vertexCount; i++)
-                {
-                    g.FillEllipse(brush, points[i].X - 10, points[i].Y - 10, 20, 20);
-
-                    g.DrawString((i + 1).ToString(), new Font("Arial", 10), Brushes.White, points[i].X - 5, points[i].Y - 5);
-                }
-            }
-
-            picture.Image = bitmap;
-        }
-
 
         int[,] graph;
         private void button_show_graph_Click(object sender, EventArgs e)
@@ -161,8 +112,9 @@ namespace KP_NET
 
             }
 
+            graphs graphs = new graphs(graf);
             graph = graf;
-            DrawGraph(graf, Color.Black, pictureBox1);
+            GraphMethods.DrawGraph(graphs, Color.Black, pictureBox1);
 
         }
 
@@ -304,7 +256,9 @@ namespace KP_NET
                     test += matrix[x, y] + " " + matrix[y, x] + '\n';
                 }
                 matrix[size_m - 1, size_m - 1] = 0;
-                DrawGraph(matrix, Color.Red, pictureBox1);
+
+                graphs graphs = new graphs(matrix);
+                GraphMethods.DrawGraph(graphs, Color.Red, pictureBox1);
             }
 
         }

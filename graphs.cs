@@ -21,11 +21,32 @@ namespace KP_NET
     {
         private int[,]? adjacency_matrix_;
 
-        graphs() { }
-        graphs(int[,] adjacency_matrix)
+        public graphs() 
         {
-            adjacency_matrix_ = adjacency_matrix;
-        }  
+            adjacency_matrix_ = new int[0, 0];
+        }
+        public graphs(int[,] adjacency_matrix)
+        {
+            if (adjacency_matrix != null)
+            {
+                int rows = adjacency_matrix.GetLength(0);
+                int cols = adjacency_matrix.GetLength(1);
+                adjacency_matrix_ = new int[rows, cols];
+
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < cols; j++)
+                    {
+                        adjacency_matrix_[i, j] = adjacency_matrix[i, j];
+                    }
+                }
+            }
+            else
+            {
+                adjacency_matrix_ = new int[0, 0];
+            }
+        }
+
 
         public int[,] GetMatrix()
         {
