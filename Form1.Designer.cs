@@ -62,10 +62,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Benzin-Bold", 35.9999962F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label1.Font = new Font("Microsoft Sans Serif", 35.9999962F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label1.Location = new Point(86, 70);
             label1.Name = "label1";
-            label1.Size = new Size(580, 66);
+            label1.Size = new Size(404, 55);
             label1.TabIndex = 0;
             label1.Text = "Курсовой проект";
             // 
@@ -204,7 +204,7 @@
             // 
             // button_clear
             // 
-            button_clear.Location = new Point(-2, 338);
+            button_clear.Location = new Point(6, 331);
             button_clear.Name = "button_clear";
             button_clear.Size = new Size(75, 39);
             button_clear.TabIndex = 11;

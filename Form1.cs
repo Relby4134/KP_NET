@@ -23,6 +23,7 @@ namespace KP_NET
         }
 
         int size_m;
+        bool count_flag = false;
         private void button_creatematrix_Click(object sender, EventArgs e)
         {
             matrix.Columns.Clear();
@@ -31,6 +32,7 @@ namespace KP_NET
             if ((!int.TryParse(textBox_numb.Text, out _)) || (textBox_numb.Text == " ") || (int.Parse(textBox_numb.Text) < 2))
             {
                 textBox_numb.BackColor = Color.Red;
+                count_flag = false;
                 label_error.Text = "Ошибка ввода количества вершин! ";
             }
             else
@@ -38,6 +40,7 @@ namespace KP_NET
                 size_m = int.Parse(textBox_numb.Text);
                 label_error.Text = "";
                 textBox_numb.BackColor = Color.Green;
+                count_flag = true;
             }
             matrix.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -123,6 +126,11 @@ namespace KP_NET
         int[,] graph;
         private void button_show_graph_Click(object sender, EventArgs e)
         {
+            if (!count_flag)
+            {
+                MessageBox.Show("Вы не можете создать граф, пока не создадите матрицу смежности!");
+                return;
+            }
             button_get_gamgr.Visible = true;
 
             textBox_numb.BackColor = Color.White;     
@@ -217,9 +225,10 @@ namespace KP_NET
         }
 
         static bool hasCycle;
-        List<int> path = new List<int>();
+        List<int> path;
         public void hamCycle(int[,] graph)
         {
+            List<int> path = new List<int>();
             hasCycle = false;
             path.Add(0);
             bool[] visited = new bool[graph.GetLength(0)];
@@ -240,8 +249,18 @@ namespace KP_NET
 
         private void button_get_gamgr_Click(object sender, EventArgs e)
         {
-            listBox1.Visible = true;
-            hamCycle(graph);
+            bool hasEmptyCells = matrix.Rows.Cast<DataGridViewRow>().Any(row => row.Cells.Cast<DataGridViewCell>().Any(cell => cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString())));
+
+            if (hasEmptyCells)
+            {
+                MessageBox.Show("В таблице есть пустые ячейки.");
+            }
+            else
+            {
+                listBox1.Items.Clear();
+                listBox1.Visible = true;
+                hamCycle(graph);
+            }
         }
 
         private void button_clear_Click(object sender, EventArgs e)
