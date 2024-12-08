@@ -269,6 +269,7 @@ namespace KP_NET
 
         private void MatrixChange(object sender, EventArgs e)
         {
+            matrix.ClearSelection();
             for (int i = 0; i < size_m;i++)
             {
                 matrix.Rows[i].Cells[i].Value = 0;
