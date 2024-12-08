@@ -266,6 +266,14 @@ namespace KP_NET
         {
             openTab(1);
         }
+
+        private void MatrixChange(object sender, EventArgs e)
+        {
+            for (int i = 0; i < size_m;i++)
+            {
+                matrix.Rows[i].Cells[i].Value = 0;
+            }
+        }
     }
 
 }

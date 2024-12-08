@@ -118,7 +118,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(731, 402);
+            tabPage1.Size = new Size(731, 396);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -250,6 +250,7 @@
             matrix.Name = "matrix";
             matrix.Size = new Size(306, 133);
             matrix.TabIndex = 5;
+            matrix.MouseLeave += MatrixChange;
             // 
             // label4
             // 
