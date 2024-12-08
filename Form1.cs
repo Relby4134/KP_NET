@@ -177,7 +177,7 @@ namespace KP_NET
         }
 
         static bool hasCycle;
-        List<int> path;
+        List<int>? path;
         public void hamCycle(int[,] graph)
         {
             List<int> path = new List<int>();
@@ -218,7 +218,6 @@ namespace KP_NET
         private void button_clear_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            path.Clear();
             graph = null;
             matrix.Columns.Clear();
             matrix.Rows.Clear();
