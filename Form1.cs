@@ -105,7 +105,7 @@ namespace KP_NET
                     else
                     {
 
-                        MessageBox.Show($"Ячейка ({i}, {j}) имеет недопустимое значение: {cellValue}.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Ячейка ({i+1}, {j+1}) имеет недопустимое значение!\n Допустимые значение: 0 и 1.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
