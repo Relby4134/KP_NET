@@ -270,17 +270,16 @@ namespace KP_NET
             openTab(1);
         }
 
-        private void matrix_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+
+        private void MatrixChange(object sender, EventArgs e)
         {
+            matrix.ClearSelection();
             for (int i = 0; i < size_m; i++)
             {
-                for (int j = 0; j < size_m; j++)
-                {
-
-                    matrix.Rows[j].Cells[i].Value = matrix.Rows[i].Cells[j].Value;               
-                }
+                matrix.Rows[i].Cells[i].Value = 0;
             }
         }
+        
     }
 
 }
