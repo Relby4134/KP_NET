@@ -35,11 +35,13 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            groupBox2 = new GroupBox();
+            label8 = new Label();
+            pictureBox1 = new PictureBox();
             groupBox1 = new GroupBox();
             label6 = new Label();
             button_get_gamgr = new Button();
             button_clear = new Button();
-            pictureBox1 = new PictureBox();
             listBox1 = new ListBox();
             button_show_graph = new Button();
             label_error = new Label();
@@ -51,8 +53,9 @@
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
-            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)matrix).BeginInit();
             SuspendLayout();
             // 
@@ -60,7 +63,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Benzin-Bold", 35.9999962F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(105, 27);
+            label1.Location = new Point(86, 70);
             label1.Name = "label1";
             label1.Size = new Size(580, 66);
             label1.TabIndex = 0;
@@ -69,40 +72,41 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("High Tower Text", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(27, 118);
+            label2.Font = new Font("Lucida Console", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label2.Location = new Point(25, 161);
             label2.Name = "label2";
-            label2.Size = new Size(577, 56);
+            label2.Size = new Size(614, 38);
             label2.TabIndex = 1;
-            label2.Text = "на тему: Программная реализация метода построения \r\n              гамильтоновых циклов в неориентированном графе";
+            label2.Text = "на тему: Программная реализация метода построения \r\n         гамильтоновых циклов в неориентированном графе";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Benzin-Bold", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(27, 190);
+            label3.Font = new Font("Lucida Console", 14.25F);
+            label3.Location = new Point(25, 225);
             label3.Name = "label3";
-            label3.Size = new Size(408, 52);
+            label3.Size = new Size(295, 38);
             label3.TabIndex = 2;
             label3.Text = "Выполнил: студент бИСТ-233\r\n      Кудинова А. Ю.";
             // 
             // button_go
             // 
-            button_go.Location = new Point(324, 281);
+            button_go.Location = new Point(319, 298);
             button_go.Name = "button_go";
             button_go.Size = new Size(111, 49);
             button_go.TabIndex = 3;
             button_go.Text = "Начать";
             button_go.UseVisualStyleBackColor = true;
+            button_go.Click += button_go_Click;
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Location = new Point(0, 1);
+            tabControl1.Location = new Point(0, -17);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(739, 412);
+            tabControl1.Size = new Size(739, 430);
             tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -114,28 +118,56 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(731, 384);
+            tabPage1.Size = new Size(731, 402);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(groupBox2);
             tabPage2.Controls.Add(groupBox1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(731, 384);
+            tabPage2.Size = new Size(731, 402);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(label8);
+            groupBox2.Controls.Add(pictureBox1);
+            groupBox2.Location = new Point(363, 14);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(362, 380);
+            groupBox2.TabIndex = 5;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Граф";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.ForeColor = Color.Red;
+            label8.Location = new Point(15, 19);
+            label8.Name = "label8";
+            label8.Size = new Size(0, 15);
+            label8.TabIndex = 6;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(4, 22);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(352, 352);
+            pictureBox1.TabIndex = 10;
+            pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(button_get_gamgr);
             groupBox1.Controls.Add(button_clear);
-            groupBox1.Controls.Add(pictureBox1);
             groupBox1.Controls.Add(listBox1);
             groupBox1.Controls.Add(button_show_graph);
             groupBox1.Controls.Add(label_error);
@@ -146,7 +178,7 @@
             groupBox1.Controls.Add(textBox_numb);
             groupBox1.Location = new Point(8, 16);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(715, 357);
+            groupBox1.Size = new Size(344, 380);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "Создание графа";
@@ -172,7 +204,7 @@
             // 
             // button_clear
             // 
-            button_clear.Location = new Point(0, 312);
+            button_clear.Location = new Point(-2, 338);
             button_clear.Name = "button_clear";
             button_clear.Size = new Size(75, 39);
             button_clear.TabIndex = 11;
@@ -180,31 +212,23 @@
             button_clear.UseVisualStyleBackColor = true;
             button_clear.Click += button_clear_Click;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(341, 19);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(368, 321);
-            pictureBox1.TabIndex = 10;
-            pictureBox1.TabStop = false;
-            // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
             listBox1.Location = new Point(87, 246);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(234, 94);
+            listBox1.Size = new Size(257, 124);
             listBox1.TabIndex = 9;
-            listBox1.Click += ListBoxCycles_DoubleClick;
+            listBox1.SelectedIndexChanged += ListBoxCycles_DoubleClick;
             // 
             // button_show_graph
             // 
             button_show_graph.Location = new Point(200, 69);
             button_show_graph.Name = "button_show_graph";
-            button_show_graph.Size = new Size(75, 23);
+            button_show_graph.Size = new Size(121, 23);
             button_show_graph.TabIndex = 7;
-            button_show_graph.Text = "button1";
+            button_show_graph.Text = "Нарисовать граф";
             button_show_graph.UseVisualStyleBackColor = true;
             button_show_graph.Click += button_show_graph_Click;
             // 
@@ -222,9 +246,9 @@
             matrix.AllowUserToAddRows = false;
             matrix.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             matrix.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            matrix.Location = new Point(33, 98);
+            matrix.Location = new Point(15, 98);
             matrix.Name = "matrix";
-            matrix.Size = new Size(288, 133);
+            matrix.Size = new Size(306, 133);
             matrix.TabIndex = 5;
             // 
             // label4
@@ -247,9 +271,9 @@
             // 
             // button_creatematrix
             // 
-            button_creatematrix.Location = new Point(228, 34);
+            button_creatematrix.Location = new Point(228, 20);
             button_creatematrix.Name = "button_creatematrix";
-            button_creatematrix.Size = new Size(75, 23);
+            button_creatematrix.Size = new Size(107, 42);
             button_creatematrix.TabIndex = 3;
             button_creatematrix.Text = "Создать матрицу";
             button_creatematrix.UseVisualStyleBackColor = true;
@@ -266,7 +290,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(739, 410);
+            ClientSize = new Size(739, 412);
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Form1";
@@ -274,9 +298,11 @@
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)matrix).EndInit();
             ResumeLayout(false);
         }
@@ -303,5 +329,7 @@
         private Button button_get_gamgr;
         private Button button_clear;
         private Label label6;
+        private GroupBox groupBox2;
+        private Label label8;
     }
 }

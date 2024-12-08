@@ -13,9 +13,14 @@ namespace KP_NET
         public Form1()
         {
             InitializeComponent();
-            
+            this.tabControl1.ItemSize = new System.Drawing.Size(1, 1);
+            button_get_gamgr.Visible = false;
+            listBox1.Visible = false;
         }
-
+        void openTab(int tabIndex)
+        {
+            tabControl1.SelectedIndex = tabIndex;
+        }
 
         int size_m;
         private void button_creatematrix_Click(object sender, EventArgs e)
@@ -64,7 +69,7 @@ namespace KP_NET
 
 
         }
-        bool flag= false;
+        bool flag = false;
         private void DrawGraph(int[,] matrix, Color color)
         {
             int vertexCount = matrix.GetLength(0);
@@ -118,7 +123,9 @@ namespace KP_NET
         int[,] graph;
         private void button_show_graph_Click(object sender, EventArgs e)
         {
+            button_get_gamgr.Visible = true;
 
+            textBox_numb.BackColor = Color.White;     
             int rows = matrix.Rows.Count;
             int cols = matrix.Columns.Count;
             int[,] graf = new int[rows, cols];
@@ -233,6 +240,7 @@ namespace KP_NET
 
         private void button_get_gamgr_Click(object sender, EventArgs e)
         {
+            listBox1.Visible = true;
             hamCycle(graph);
         }
 
@@ -244,6 +252,10 @@ namespace KP_NET
             matrix.Columns.Clear();
             matrix.Rows.Clear();
             textBox_numb.Clear();
+            pictureBox1.Image = null;
+            textBox_numb.BackColor = Color.White;
+            button_get_gamgr.Visible = false;
+            listBox1.Visible = false;
 
         }
         public void DrawCycle(List<int> cycle)
@@ -297,7 +309,7 @@ namespace KP_NET
                 for (int i = 0; i < graph.GetLength(0); i++)
                 {
                     g.FillEllipse(brush, points[i].X - 10, points[i].Y - 10, 20, 20);
-                    g.DrawString((i+1).ToString(), new Font("Arial", 10), Brushes.White, points[i].X - 5, points[i].Y - 5);
+                    g.DrawString((i + 1).ToString(), new Font("Arial", 10), Brushes.White, points[i].X - 5, points[i].Y - 5);
                 }
             }
 
@@ -306,38 +318,39 @@ namespace KP_NET
 
         private void ListBoxCycles_DoubleClick(object sender, EventArgs e)
         {
-            
-                if (listBox1.SelectedItem != null)
+
+            if (listBox1.SelectedItem != null)
+            {
+                string? select = listBox1.SelectedItem.ToString();
+                string[]? indices = select.Split("->");
+
+                List<int> cycle = new List<int>();
+                foreach (var index in indices)
                 {
-                    string? select = listBox1.SelectedItem.ToString();
-                    string[]? indices = select.Split("->");
-
-                    List<int> cycle = new List<int>();
-                    foreach (var index in indices)
-                    {
-                        cycle.Add(int.Parse(index) - 1);
-                    }
-
-                    int[,]? matrix = new int[size_m, size_m];
-                    string? test = "";
-                    for (int i = 0; i < size_m; i++)
-                    {
-                        matrix[i, i] = 0;
-                        int x = cycle[i];
-                        int y = cycle[i + 1];
-                        matrix[x, y] = 1;
-                        matrix[y, x] = 1;
-                        test += matrix[x, y] + " " + matrix[y, x] + '\n';
-                    }
-                    matrix[size_m - 1, size_m - 1] = 0;
-                    DrawGraph(matrix, Color.Red);
+                    cycle.Add(int.Parse(index) - 1);
                 }
-            
+
+                int[,]? matrix = new int[size_m, size_m];
+                string? test = "";
+                for (int i = 0; i < size_m; i++)
+                {
+                    matrix[i, i] = 0;
+                    int x = cycle[i];
+                    int y = cycle[i + 1];
+                    matrix[x, y] = 1;
+                    matrix[y, x] = 1;
+                    test += matrix[x, y] + " " + matrix[y, x] + '\n';
+                }
+                matrix[size_m - 1, size_m - 1] = 0;
+                DrawGraph(matrix, Color.Red);
+            }
+
         }
 
-
-
-
+        private void button_go_Click(object sender, EventArgs e)
+        {
+            openTab(1);
+        }
     }
 
 }
