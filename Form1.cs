@@ -73,14 +73,14 @@ namespace KP_NET
 
         }
         bool flag = false;
-        private void DrawGraph(int[,] matrix, Color color)
+        private void DrawGraph(int[,] matrix, Color color, PictureBox picture)
         {
             int vertexCount = matrix.GetLength(0);
             int radius = 100;
-            int centerX = pictureBox1.Width / 2;
-            int centerY = pictureBox1.Height / 2;
+            int centerX = picture.Width / 2;
+            int centerY = picture.Height / 2;
 
-            Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Bitmap bitmap = new Bitmap(picture.Width, picture.Height);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
                 g.Clear(Color.White);
@@ -119,7 +119,7 @@ namespace KP_NET
                 }
             }
 
-            pictureBox1.Image = bitmap;
+            picture.Image = bitmap;
         }
 
 
@@ -162,7 +162,7 @@ namespace KP_NET
             }
 
             graph = graf;
-            DrawGraph(graf, Color.Black);
+            DrawGraph(graf, Color.Black, pictureBox1);
 
         }
 
@@ -277,63 +277,6 @@ namespace KP_NET
             listBox1.Visible = false;
 
         }
-        public void DrawCycle(List<int> cycle)
-        {
-            int vertexCount = cycle.Count;
-            int radius = 100;
-            int centerX = pictureBox1.Width / 2;
-            int centerY = pictureBox1.Height / 2;
-
-            Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            using (Graphics g = Graphics.FromImage(bitmap))
-            {
-                g.Clear(Color.White);
-                Pen pen = new Pen(Color.Black);
-                Brush brush = new SolidBrush(Color.Blue);
-
-                Point[] points = new Point[vertexCount];
-                double angleStep = 2 * Math.PI / vertexCount;
-
-                for (int i = 0; i < vertexCount; i++)
-                {
-                    double angle = angleStep * i;
-                    int x = (int)(centerX + radius * Math.Cos(angle));
-                    int y = (int)(centerY + radius * Math.Sin(angle));
-                    points[i] = new Point(x, y);
-                }
-
-
-                // Рисуем рёбра
-                for (int i = 0; i < graph.GetLength(0); i++)
-                {
-                    for (int j = i + 1; j < graph.GetLength(0); j++)
-                    {
-                        if (graph[i, j] == 1)
-                        {
-                            // Проверяем, является ли это ребро частью выбранного цикла
-                            if (cycle.Contains(i) && cycle.Contains(j))
-                            {
-                                // Выделяем рёбра красным цветом, если они входят в цикл
-                                g.DrawLine(new Pen(Color.Red, 2), points[i], points[j]);
-                            }
-                            //else
-                            //{
-                            //    g.DrawLine(pen, points[i], points[j]);
-                            //}
-                        }
-                    }
-                }
-
-                // Рисуем вершины
-                for (int i = 0; i < graph.GetLength(0); i++)
-                {
-                    g.FillEllipse(brush, points[i].X - 10, points[i].Y - 10, 20, 20);
-                    g.DrawString((i + 1).ToString(), new Font("Arial", 10), Brushes.White, points[i].X - 5, points[i].Y - 5);
-                }
-            }
-
-            pictureBox1.Image = bitmap;
-        }
 
         private void ListBoxCycles_DoubleClick(object sender, EventArgs e)
         {
@@ -361,7 +304,7 @@ namespace KP_NET
                     test += matrix[x, y] + " " + matrix[y, x] + '\n';
                 }
                 matrix[size_m - 1, size_m - 1] = 0;
-                DrawGraph(matrix, Color.Red);
+                DrawGraph(matrix, Color.Red, pictureBox1);
             }
 
         }
