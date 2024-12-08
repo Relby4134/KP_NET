@@ -250,7 +250,7 @@
             matrix.Name = "matrix";
             matrix.Size = new Size(306, 133);
             matrix.TabIndex = 5;
-            matrix.MouseLeave += MatrixChange;
+            matrix.CellValueChanged += matrix_CellValueChanged;
             // 
             // label4
             // 

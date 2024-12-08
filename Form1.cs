@@ -74,6 +74,9 @@ namespace KP_NET
         }
         bool flag = false;
 
+        
+
+
         int[,] graph;
         private void button_show_graph_Click(object sender, EventArgs e)
         {
@@ -84,7 +87,7 @@ namespace KP_NET
             }
             button_get_gamgr.Visible = true;
 
-            textBox_numb.BackColor = Color.White;     
+            textBox_numb.BackColor = Color.White;
             int rows = matrix.Rows.Count;
             int cols = matrix.Columns.Count;
             int[,] graf = new int[rows, cols];
@@ -105,7 +108,7 @@ namespace KP_NET
                     else
                     {
 
-                        MessageBox.Show($"Ячейка ({i+1}, {j+1}) имеет недопустимое значение!\n Допустимые значение: 0 и 1.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Ячейка ({i + 1}, {j + 1}) имеет недопустимое значение!\n Допустимые значение: 0 и 1.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
@@ -267,12 +270,15 @@ namespace KP_NET
             openTab(1);
         }
 
-        private void MatrixChange(object sender, EventArgs e)
+        private void matrix_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            matrix.ClearSelection();
-            for (int i = 0; i < size_m;i++)
+            for (int i = 0; i < size_m; i++)
             {
-                matrix.Rows[i].Cells[i].Value = 0;
+                for (int j = 0; j < size_m; j++)
+                {
+
+                    matrix.Rows[j].Cells[i].Value = matrix.Rows[i].Cells[j].Value;               
+                }
             }
         }
     }
