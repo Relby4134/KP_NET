@@ -63,7 +63,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 35.9999962F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(86, 70);
+            label1.Location = new Point(167, 71);
             label1.Name = "label1";
             label1.Size = new Size(404, 55);
             label1.TabIndex = 0;
@@ -73,7 +73,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Lucida Console", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label2.Location = new Point(25, 161);
+            label2.Location = new Point(38, 162);
             label2.Name = "label2";
             label2.Size = new Size(614, 38);
             label2.TabIndex = 1;
@@ -83,7 +83,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Lucida Console", 14.25F);
-            label3.Location = new Point(25, 225);
+            label3.Location = new Point(38, 226);
             label3.Name = "label3";
             label3.Size = new Size(295, 38);
             label3.TabIndex = 2;
@@ -91,7 +91,7 @@
             // 
             // button_go
             // 
-            button_go.Location = new Point(319, 298);
+            button_go.Location = new Point(332, 299);
             button_go.Name = "button_go";
             button_go.Size = new Size(111, 49);
             button_go.TabIndex = 3;

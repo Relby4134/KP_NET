@@ -86,7 +86,7 @@ namespace KP_NET
                 MessageBox.Show("Вы не можете создать граф, пока не создадите матрицу смежности!");
                 return;
             }
-            button_get_gamgr.Visible = true;
+            
 
             textBox_numb.BackColor = Color.White;
             int rows = matrix.Rows.Count;
@@ -115,7 +115,7 @@ namespace KP_NET
                 }
 
             }
-
+            button_get_gamgr.Visible = true;
             graphs graphs = new graphs(graf);
             graph = graf;
             GraphMethods.DrawGraph(graphs, Color.Black, pictureBox1);
