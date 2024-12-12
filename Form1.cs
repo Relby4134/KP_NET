@@ -69,8 +69,10 @@ namespace KP_NET
                 }
             }
 
-
-
+            foreach (DataGridViewColumn column in matrix.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
 
         }
         bool flag = false;
@@ -81,6 +83,8 @@ namespace KP_NET
         int[,] graph;
         private void button_show_graph_Click(object sender, EventArgs e)
         {
+            MatrixChange(matrix, e);
+
             if (!count_flag)
             {
                 MessageBox.Show("Вы не можете создать граф, пока не создадите матрицу смежности!");
