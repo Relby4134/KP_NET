@@ -230,6 +230,7 @@ namespace KP_NET
             textBox_numb.BackColor = Color.White;
             button_get_gamgr.Visible = false;
             listBox1.Visible = false;
+            count_flag = false;
 
         }
 
