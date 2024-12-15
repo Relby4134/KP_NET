@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 
 namespace KP_NET
@@ -240,10 +241,28 @@ namespace KP_NET
 
         }
 
+        public static bool ValidateListBoxFormat(ListBox listBox)
+        {
+            // –егул€рное выражение дл€ проверки формата "цифры -> цифры"
+            string pattern = @"^\d+\s*->\s*\d+$";
+
+            foreach (var item in listBox.Items)
+            {
+                // ѕриводим элемент к строке и провер€ем регул€рным выражением
+                string text = item.ToString();
+                if (!Regex.IsMatch(text, pattern))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private void ListBoxCycles_DoubleClick(object sender, EventArgs e)
         {
 
-            if (listBox1.SelectedItem != null)
+            if ((listBox1.SelectedItem != null)&&(ValidateListBoxFormat(listBox1)))
             {
                 string? select = listBox1.SelectedItem.ToString();
                 string[]? indices = select.Split("->");
@@ -269,7 +288,7 @@ namespace KP_NET
 
                 graphs graphs = new graphs(matrix);
                 GraphMethods.DrawGraph(graphs, Color.Red, pictureBox1);
-            }
+            } 
 
         }
 

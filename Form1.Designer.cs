@@ -294,7 +294,7 @@
             ClientSize = new Size(739, 412);
             Controls.Add(tabControl1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Алгоритм поиска гамельтоновых путей в неориентированном графе";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
