@@ -76,7 +76,7 @@ namespace KP_NET
             }
 
         }
-        bool flag = false;
+        
 
         
 
@@ -236,7 +236,7 @@ namespace KP_NET
             button_get_gamgr.Visible = false;
             listBox1.Visible = false;
             count_flag = false;
-            flag = false;
+            
             size_m=0;
 
         }
