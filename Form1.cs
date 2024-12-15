@@ -244,7 +244,7 @@ namespace KP_NET
         public static bool ValidateListBoxFormat(ListBox listBox)
         {
             // –егул€рное выражение дл€ проверки формата "цифры -> цифры"
-            string pattern = @"^\d+\s*->\s*\d+$";
+            string pattern = @"^\d+(\s*->\s*\d+)+$";
 
             foreach (var item in listBox.Items)
             {
