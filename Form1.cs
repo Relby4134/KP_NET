@@ -191,7 +191,7 @@ namespace KP_NET
         {
             List<int> path = new List<int>();
             hasCycle = false;
-            path.Add(0);
+            path.Add(0); 
             bool[] visited = new bool[graph.GetLength(0)];
 
             for (int i = 0; i < visited.Length; i++)
@@ -274,7 +274,7 @@ namespace KP_NET
                 }
 
                 int[,]? matrix = new int[size_m, size_m];
-                string? test = "";
+                
                 for (int i = 0; i < size_m; i++)
                 {
                     matrix[i, i] = 0;
@@ -282,7 +282,6 @@ namespace KP_NET
                     int y = cycle[i + 1];
                     matrix[x, y] = 1;
                     matrix[y, x] = 1;
-                    test += matrix[x, y] + " " + matrix[y, x] + '\n';
                 }
                 matrix[size_m - 1, size_m - 1] = 0;
 
